@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="10dp"
+    android:paddingLeft="50dp"
+    android:paddingRight="50dp" >
+        
+    <TextView
+        android:id="@+id/text_instruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="@string/putSasukeInBox"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+      
+	<ImageView
+	    android:id="@+id/sasuke"
+	    android:layout_width="50dp"
+	    android:layout_height="65dp"
+	    android:layout_below="@+id/text_instruction"
+	    android:layout_centerHorizontal="true"
+	    android:contentDescription="@string/sasukeDes"
+	    android:longClickable="true"
+	    android:src="@drawable/sasuke" />
+    
+    <RelativeLayout
+        android:id="@+id/boxLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="96dp"
+        android:layout_alignParentBottom="true" >  
+        
+        <ImageView
+            android:id="@+id/box1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:contentDescription="@string/boxDes"
+            android:src="@drawable/box" />
+
+        <ImageView
+            android:id="@+id/box2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/boxDes"
+            android:src="@drawable/box" />
+    </RelativeLayout>
+
+</RelativeLayout>
