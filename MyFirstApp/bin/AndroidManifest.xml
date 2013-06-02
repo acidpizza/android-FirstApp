@@ -47,7 +47,7 @@
                 android:value="com.example.myfirstapp.MainActivity" />
         </activity>
         <activity
-            android:name="com.example.myfirstapp.SwitchScreen"
+            android:name="com.example.myfirstapp.Fragments"
             android:label="@string/title_activity_switch_screen"
             android:parentActivityName="com.example.myfirstapp.MainActivity" >
             <meta-data

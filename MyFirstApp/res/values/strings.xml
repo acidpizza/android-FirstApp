@@ -9,7 +9,7 @@
     <string name="button_SasukeBox">Sasuke In Box</string>
     <string name="button_QuestionAnswer">Question and Answer</string>
     <string name="button_DragAndDrop">Drag And Drop</string>
-    <string name="button_SwitchScreen">Switch Screen</string>
+    <string name="button_FragmentTest">Fragment Test</string>
 
     <!-- SasukeBox App -->
     <string name="title_activity_sasuke_box">Sasuke_box</string>
@@ -33,7 +33,9 @@
     <string name="choice_2">-</string>
     <string name="choice_3">Least favorite</string>
     
-	<!-- SwitchScreen App -->
-    <string name="title_activity_switch_screen">SwitchScreen</string>
+	<!-- Fragments App -->
+    <string name="title_activity_switch_screen">Fragment Test</string>
+    <string name="button_fragment1_b1">b1</string>
+    <string name="button_fragment1_b2">b2</string>
 
 </resources>

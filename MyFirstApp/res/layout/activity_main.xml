@@ -37,7 +37,7 @@
          android:layout_width="fill_parent"
          android:layout_height="wrap_content"
          android:layout_gravity="center"
-         android:onClick="startSwitchScreen"
-         android:text="@string/button_SwitchScreen" />
+         android:onClick="startFragments"
+         android:text="@string/button_FragmentTest" />
     
 </LinearLayout>

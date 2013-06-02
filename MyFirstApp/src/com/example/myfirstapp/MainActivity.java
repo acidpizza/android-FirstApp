@@ -42,9 +42,9 @@ public class MainActivity extends Activity
     	startActivity(intent);
     }
     
-    public void startSwitchScreen(View view) 
+    public void startFragments(View view) 
     {	
-    	Intent intent = new Intent(this, DragAndDrop.class);
+    	Intent intent = new Intent(this, Fragments.class);
     	startActivity(intent);
     }
 }
