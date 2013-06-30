@@ -6,11 +6,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.TextView;
 
 public class Fragment1 extends Fragment
-{
+{	
 	  @Override
 	  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
 	  {
@@ -29,8 +28,8 @@ public class Fragment1 extends Fragment
 			  ((TextView)getActivity().findViewById(R.id.fragment1Text)).setText(savedText);
 		  }
 	  }
-	  
-	  @Override
+
+	@Override
 	  public void onSaveInstanceState(Bundle savedInstanceState) 
 	  {
 		  super.onSaveInstanceState(savedInstanceState);

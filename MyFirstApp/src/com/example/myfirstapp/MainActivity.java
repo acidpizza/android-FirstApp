@@ -47,5 +47,11 @@ public class MainActivity extends Activity
     	Intent intent = new Intent(this, Fragments.class);
     	startActivity(intent);
     }
+    
+    public void startGestures(View view) 
+    {	
+    	Intent intent = new Intent(this, Gestures.class);
+    	startActivity(intent);
+    }
 }
 

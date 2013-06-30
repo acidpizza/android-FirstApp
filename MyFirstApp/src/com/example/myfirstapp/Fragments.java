@@ -4,11 +4,9 @@ import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class Fragments extends Activity {
@@ -22,8 +20,8 @@ public class Fragments extends Activity {
 		setupActionBar();
 		
 		setupActivity(savedInstanceState);
-	}
-
+	} 
+	
 	/**
 	 * Set up the {@link android.app.ActionBar}.
 	 */
