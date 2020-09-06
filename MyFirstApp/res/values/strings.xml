@@ -11,6 +11,7 @@
     <string name="button_DragAndDrop">Drag And Drop</string>
     <string name="button_FragmentTest">Fragment Test</string>
     <string name="button_GesturesTest">Gestures Test</string>
+    <string name="button_MultiTouchTest">Multitouch Test</string>
 
     <!-- SasukeBox App -->
     <string name="title_activity_sasuke_box">Sasuke_box</string>
@@ -41,7 +42,9 @@
 
     <!-- Gestures App -->
     <string name="title_activity_gestures">Gestures</string>
+    
+    <!-- Multitouch App -->
     <string name="title_activity_multi_touch">MultiTouch</string>
-    <string name="hello_world">Hello world!</string>
+    
 
 </resources>

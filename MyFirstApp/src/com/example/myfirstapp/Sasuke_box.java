@@ -5,9 +5,11 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipDescription;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.DragEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.View.OnDragListener;
 import android.view.View.OnLongClickListener;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class Sasuke_box extends Activity {
@@ -64,14 +67,17 @@ public class Sasuke_box extends Activity {
 
 	public void setDrag()
 	{
+		ImageView sasukeImageView = (ImageView) findViewById(R.id.sasuke);
+		sasukeImageView.setOnLongClickListener(new SasukeLongClickListener());
+		
+		RelativeLayout relLayout = (RelativeLayout) findViewById(R.id.layout);
+		relLayout.setOnDragListener(new Layout_DragListener());
+		
 		ImageView box1 = (ImageView) findViewById(R.id.box1);
 		box1.setOnDragListener(new Box1_DragListener());
 
 		ImageView box2 = (ImageView) findViewById(R.id.box2);
 		box2.setOnDragListener(new Box2_DragListener());
-
-		ImageView sasukeImageView = (ImageView) findViewById(R.id.sasuke);
-		sasukeImageView.setOnLongClickListener(new SasukeLongClickListener());
 
 	}
 	
@@ -100,7 +106,7 @@ public class Sasuke_box extends Activity {
 			// Instantiates the drag shadow builder.
 			//View.DragShadowBuilder myShadow = new MyDragShadowBuilder(sasukeImageView, getApplicationContext() );
 			View.DragShadowBuilder myShadow = new View.DragShadowBuilder(v);
-
+			
 			// Starts the drag
 			v.startDrag(dragData,  // the data to be dragged
 					myShadow,  // the drag shadow builder
@@ -115,6 +121,8 @@ public class Sasuke_box extends Activity {
 		}
 	};
 
+	
+	
 	class Box1_DragListener implements OnDragListener 
 	{	
 		@Override
@@ -126,6 +134,7 @@ public class Sasuke_box extends Activity {
 			{
 			case DragEvent.ACTION_DRAG_STARTED:
 			{
+				Log.e("1", "Box1 drag started");
 				ImageView view = (ImageView) event.getLocalState();
 				if(event.getClipDescription().getLabel().equals(String.valueOf(view.getTag())))
 				{
@@ -160,6 +169,18 @@ public class Sasuke_box extends Activity {
 
 			case DragEvent.ACTION_DROP:
 				Toast.makeText(getApplicationContext(), String.valueOf(event.getClipData().getItemAt(0).getText()), Toast.LENGTH_SHORT).show();
+				
+				// Reject and Restore Sasuke			
+				final ImageView view = (ImageView) event.getLocalState();
+
+				view.post(new Runnable() 
+				{
+					public void run() 
+					{
+						view.setVisibility(View.VISIBLE);
+					}
+				});
+				
 				break;
 			
 			case DragEvent.ACTION_DRAG_ENDED:
@@ -178,7 +199,7 @@ public class Sasuke_box extends Activity {
 
 	class Box2_DragListener implements OnDragListener 
 	{	
-		boolean droppedHere;
+		private boolean droppedHere;
 		
 		@Override
 		public boolean onDrag(View v, DragEvent event) 
@@ -190,7 +211,7 @@ public class Sasuke_box extends Activity {
 
 			case DragEvent.ACTION_DRAG_STARTED:
 				droppedHere = false;
-				
+				Log.e("1", "Box2 drag started");
 				if (event.getClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN))
 				{					
 					// acceptable data
@@ -223,7 +244,7 @@ public class Sasuke_box extends Activity {
 				// box back to normal
 				v.animate().scaleX(1.0f);
 				v.animate().scaleY(1.0f);
-				
+				/*
 				// Restore Sasuke
 				if(!droppedHere)
 				{
@@ -237,6 +258,7 @@ public class Sasuke_box extends Activity {
 						}
 					});
 				}
+				*/
 				
 			default:
 				break;
@@ -245,4 +267,85 @@ public class Sasuke_box extends Activity {
 		}
 	};
 	
+	class Layout_DragListener implements OnDragListener 
+	{	
+		private boolean droppedHere;
+		private float oldX = 0;
+		private float oldY = 0;
+		private float newX = 0;
+		private float newY = 0;
+		
+		@Override
+		public boolean onDrag(View v, DragEvent event) 
+		{
+			int action = event.getAction();
+			
+			switch (action) 
+			{
+
+			case DragEvent.ACTION_DRAG_STARTED:
+				// Parent viewgroup will not receive action_drag_started events
+				Log.e("1", "Layout drag started");
+				droppedHere = false;
+				
+				if (event.getClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN))
+				{					
+					// acceptable data
+					Log.e("1", "Layout accepted drag");
+					return true;
+				}
+				else
+				{
+					// not acceptable data
+					Log.e("1", "Layout rejected drag");
+					return false;
+				}
+
+			case DragEvent.ACTION_DRAG_ENTERED:
+				Log.e("1", "Entered layout");
+				oldX = event.getX();
+				oldY = event.getY();
+				Log.e("1", "Starting coords: X=" + oldX + " Y=" + oldY);
+				
+				
+				break;
+
+			case DragEvent.ACTION_DRAG_EXITED:
+				Log.e("1", "Exited layout");
+				break;
+
+			case DragEvent.ACTION_DROP:
+				droppedHere = true;
+				
+
+				newX = event.getX();
+				newY = event.getY();
+
+				// Restore Sasuke				
+				final ImageView view = (ImageView) event.getLocalState();
+
+				view.post(new Runnable() 
+				{
+					public void run() 
+					{
+						
+						view.setX(newX);
+						view.setY(newY);
+						view.setVisibility(View.VISIBLE);
+					}
+				});
+				
+				break;
+
+			case DragEvent.ACTION_DRAG_ENDED:
+				// Parent viewgroup will not receive action_drag_ended events
+				Log.e("1", "Drag Ended in layout");
+
+				
+			default:
+				break;
+			}
+			return true;
+		}
+	};
 }

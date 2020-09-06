@@ -47,4 +47,13 @@
          android:layout_gravity="center"
          android:onClick="startGestures"
          android:text="@string/button_GesturesTest" />     
+         
+     <Button
+         android:layout_weight="1"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center"
+         android:onClick="startMultiTouch"
+         android:text="@string/button_MultiTouchTest" />
+     
 </LinearLayout>

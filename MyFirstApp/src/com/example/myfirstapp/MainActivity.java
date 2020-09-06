@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import com.newrelic.agent.android.NewRelic;
 
 public class MainActivity extends Activity 
 {	
@@ -13,6 +14,10 @@ public class MainActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        NewRelic.withApplicationToken(
+        		"AA527518e4931ffc56a2ac3ada976b1195c3a15073"
+        		).start(this.getApplication());
     }
 
 
@@ -51,6 +56,12 @@ public class MainActivity extends Activity
     public void startGestures(View view) 
     {	
     	Intent intent = new Intent(this, Gestures.class);
+    	startActivity(intent);
+    }
+    
+    public void startMultiTouch(View view) 
+    {	
+    	Intent intent = new Intent(this, MultiTouch.class);
     	startActivity(intent);
     }
 }
